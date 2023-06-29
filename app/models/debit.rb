@@ -1,0 +1,2 @@
+class Debit < Journal
+end
