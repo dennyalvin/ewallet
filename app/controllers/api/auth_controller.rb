@@ -1,7 +1,7 @@
 class Api::AuthController < ApplicationController
-	def login
+    def login
         #Auth user by email & password
-		@user = User.find_by(email: login_params[:email])
+        @user = User.find_by(email: login_params[:email])
         if @user.present? && @user.authenticate(login_params[:password])
             #If Login success, then create Token and store it with 30 days expiration
         
@@ -13,15 +13,15 @@ class Api::AuthController < ApplicationController
             )
             
             return render json: { data: {token: token} }
-		end
+        end
 
         render json: {
             error: "Invalid email or password",
             status: 400
         },status: 400
-	end
+    end
 
-	private
+    private
     def login_params
         params.permit(:email, :password)
     end
