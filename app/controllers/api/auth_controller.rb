@@ -3,7 +3,7 @@ class Api::AuthController < ApplicationController
         #Auth user by email & password
 		@user = User.find_by(email: login_params[:email])
         if @user.present? && @user.authenticate(login_params[:password])
-            #If Login success, then create Token and store it
+            #If Login success, then create Token and store it with 30 days expiration
         
             token = session_token(@user.email)
             UserSession.create(
